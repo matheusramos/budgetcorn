@@ -1,66 +1,79 @@
 /* @flow */
 import type { Dispatch } from 'redux';
 
+import * as api from '../../api/item';
 import * as actions from './actions';
 import type { ItemAction } from './actions';
 import type { Item } from './flow';
 
-export function addItem(item: Item) {
-  return (dispatch: Dispatch<ItemAction>) => {
+// TODO: Make more meaningful error messages
+
+export function add(item: Item) {
+  return async (dispatch: Dispatch<ItemAction>) => {
     dispatch(actions.addItemBegin());
     try {
-      console.log(`TODO: Add item ${item.id}`);
+      await api.insert(item);
       dispatch(actions.addItemSuccess());
     } catch (err) {
-      dispatch(actions.addItemFailure(err));
+      console.error(err); // eslint-disable-line no-console
+      const message = 'We had some trouble saving your transaction. Could you try again?'; // TODO: i18n
+      dispatch(actions.addItemFailure(message));
     }
   };
 }
 
-export function deleteItem(itemId: string) {
-  return (dispatch: Dispatch<ItemAction>) => {
+export function remove(itemId: string) {
+  return async (dispatch: Dispatch<ItemAction>) => {
     dispatch(actions.deleteItemBegin());
     try {
-      console.log(`TODO: Delete item ${itemId}`);
+      await api.remove(itemId);
       dispatch(actions.deleteItemSuccess());
     } catch (err) {
-      dispatch(actions.deleteItemFailure(err));
+      console.error(err); // eslint-disable-line no-console
+      const message = 'We had some trouble removing your transaction. Could you try again?'; // TODO: i18n
+      dispatch(actions.deleteItemFailure(message));
     }
   };
 }
 
-export function editItem(item: Item) {
-  return (dispatch: Dispatch<ItemAction>) => {
+export function edit(item: Item) {
+  return async (dispatch: Dispatch<ItemAction>) => {
     dispatch(actions.editItemBegin());
     try {
-      console.log(`TODO: Edit item ${item.id}`);
+      await api.put(item);
       dispatch(actions.editItemSuccess());
     } catch (err) {
-      dispatch(actions.editItemFailure(err));
+      console.error(err); // eslint-disable-line no-console
+      const message = 'We had some trouble saving your transaction. Could you try again?'; // TODO: i18n
+      dispatch(actions.editItemFailure(message));
     }
   };
 }
 
-export function getItem(itemId: string) {
-  return (dispatch: Dispatch<ItemAction>) => {
+export function get(itemId: string) {
+  return async (dispatch: Dispatch<ItemAction>) => {
     dispatch(actions.getItemBegin());
     try {
-      console.log(`TODO: Get item ${itemId}`);
-      dispatch(actions.getItemSuccess());
+      const item = await api.get(itemId);
+      dispatch(actions.getItemSuccess(item));
     } catch (err) {
-      dispatch(actions.getItemFailure(err));
+      console.error(err); // eslint-disable-line no-console
+      const message = 'We had some trouble fetching your transaction. Could you try again?'; // TODO: i18n
+      dispatch(actions.getItemFailure(message));
     }
   };
 }
 
-export function listItems() {
-  return (dispatch: Dispatch<ItemAction>) => {
+export function list() {
+  return async (dispatch: Dispatch<ItemAction>) => {
     dispatch(actions.listItemsBegin());
     try {
-      const items = []; // TODO: fetch items
+      const items = await api.getAll();
       dispatch(actions.listItemsSuccess(items));
     } catch (err) {
-      dispatch(actions.listItemsFailure(err));
+      console.error(err); // eslint-disable-line no-console
+      const message = 'We had some trouble listing the transactions. Could you try again?'; // TODO: i18n
+      dispatch(actions.listItemsFailure(message));
     }
   };
 }
