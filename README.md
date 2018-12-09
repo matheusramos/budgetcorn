@@ -1,44 +1,95 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Budgetcorn :unicorn:
 
-## Available Scripts
+You personal budget manager with a little magic :unicorn:
 
-In the project directory, you can run:
+## Dev
 
-### `npm start`
+Install dependencies running
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+yarn
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+then, run the app with
 
-### `npm test`
+```
+yarn start
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You could use **npm**, but it would ignore the lockfile and the project could just not run properly.
 
-### `npm run build`
+### Static typing
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+We use [flow](http://flow.org) for static typing.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+There's also a `precommit` script to run flow before of each commit. You can bypass it with the `--no-verify` option, but it is recommended not to do it.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Lint
 
-### `npm run eject`
+Oh, there is a lot of opinionated lint rules here, check it out:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- jest/recommended
+- react-app
+- airbnb
+- prettier
+- strict-flowtype
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Lint errors **will not break development**, they will only be shown on your editor. However, once
+you commit the code, eslint will run on staged files and it may **fail the commit** if some rule
+is broken.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### prettier
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Why worry about code style if the machine can do it for us, right?
 
-## Learn More
+If you're using VSCode you can install the [prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+and automatically format code on save by adding the following rule in your `.vscode/settings.json` file:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```json
+"editor.formatOnSave": true
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+If you don't care for it, no worries. The code will be formatted before commiting.
+
+### Test
+
+To test, run
+
+```
+yarn test
+```
+
+for test coverage report, run
+
+```
+yarn coverage
+```
+
+and then check the `coverage/` dir for the report.
+
+### Build
+
+To build, run
+
+```
+yarn build
+```
+
+You can find the build app at the `build/` directory.
+
+## Architecture
+
+This app is bootstraped with [create-react-app](https://github.com/facebook/create-react-app).
+
+### Redux and Ducks
+
+For state management, we use redux with the [re-ducks architecture](https://github.com/alexnm/re-ducks).
+
+Also, it tries to follow the [container/component](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) as much as possible.
+
+### Tests
+
+The app is not thoroughly tested, but we use
+
+- jest: for general testing
+- react-test-renderer: for component testing
