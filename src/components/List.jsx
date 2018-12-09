@@ -2,10 +2,10 @@
 import React, { Fragment } from 'react';
 
 import ButtonAdd from './commons/ButtonAdd';
-import type { Item } from '../ducks/item/flow';
+import type { Transaction } from '../ducks/transaction/flow';
 
 type Props = {
-  transactions: Item[],
+  transactions: Transaction[],
 };
 
 export default (props: Props) => {

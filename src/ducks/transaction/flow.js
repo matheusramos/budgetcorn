@@ -1,5 +1,5 @@
 /* @flow */
-export type Item = {
+export type Transaction = {
   id: string,
   description: string,
   date: Date,

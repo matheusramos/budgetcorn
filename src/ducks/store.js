@@ -3,20 +3,20 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import type { Dispatch } from 'redux';
 
-import item from './item';
-import type { ItemState } from './item/reducers';
-import type { ItemAction } from './item/actions';
+import transaction from './transaction';
+import type { TransactionState } from './transaction/reducers';
+import type { TransactionAction } from './transaction/actions';
 
 export type StoreState = {
-  item: ItemState,
+  transaction: TransactionState,
 };
 
 const reducers = {
-  item,
+  transaction,
 };
 
 // intersect all available actions here
-export type StoreAction = ItemAction;
+export type StoreAction = TransactionAction;
 
 // disable eslint to use redux dev tools
 // eslint-disable-next-line no-underscore-dangle

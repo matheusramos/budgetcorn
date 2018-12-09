@@ -5,13 +5,16 @@ import type { Dispatch } from 'redux';
 import type { ThunkAction } from 'redux-thunk';
 
 import ListComponent from '../components/List';
-import { operations as transactionOps, selectors as transactionSelectors } from '../ducks/item';
+import {
+  operations as transactionOps,
+  selectors as transactionSelectors,
+} from '../ducks/transaction';
 
-import type { Item } from '../ducks/item/flow';
+import type { Transaction } from '../ducks/transaction/flow';
 import type { StoreState } from '../ducks/store';
 
 type Props = {
-  transactions: Item[],
+  transactions: Transaction[],
   // error: string | null, // TODO:
   getTransactions: () => Promise<void>,
 };
@@ -30,7 +33,7 @@ class List extends PureComponent<Props> {
 }
 
 const mapStateToProps = (state: StoreState) => ({
-  transactions: transactionSelectors.getItems(state),
+  transactions: transactionSelectors.getTransactions(state),
   error: transactionSelectors.getError(state),
 });
 

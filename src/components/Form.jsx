@@ -1,20 +1,20 @@
 /* @flow */
 import React, { Fragment } from 'react';
-import type { Item } from '../ducks/item/flow';
+import type { Transaction } from '../ducks/transaction/flow';
 
 type Props = {
-  onSubmit: (item: $Shape<Item>) => Promise<void>,
+  onSubmit: (transaction: $Shape<Transaction>) => Promise<void>,
 };
 
 export default (props: Props) => {
   const handleSubmit = () => {
-    const item = {
+    const transaction = {
       description: 'Horn polish',
       date: new Date('2018-11-01 12:45:10'),
       category: 'beauty',
       value: -145.1,
     };
-    props.onSubmit(item);
+    props.onSubmit(transaction);
   };
   return (
     <Fragment>

@@ -6,15 +6,18 @@ import type { ThunkAction } from 'redux-thunk';
 import type { ContextRouter } from 'react-router-dom';
 
 import FormComponent from '../components/Form';
-import { operations as transactionOps, selectors as transactionSelectors } from '../ducks/item';
+import {
+  operations as transactionOps,
+  selectors as transactionSelectors,
+} from '../ducks/transaction';
 
-import type { Item } from '../ducks/item/flow';
+import type { Transaction } from '../ducks/transaction/flow';
 import type { StoreState } from '../ducks/store';
 
 type Props = {
-  currentTransaction: Item,
+  currentTransaction: Transaction,
   // error: string | null, TODO:
-  addTransaction: (transaction: Item) => Promise<void>,
+  addTransaction: (transaction: Transaction) => Promise<void>,
   getTransaction: (transactionId: string) => Promise<void>,
 } & ContextRouter;
 
@@ -32,7 +35,7 @@ class List extends PureComponent<Props> {
     }
   }
 
-  handleSubmit = async (transaction: Item) => {
+  handleSubmit = async (transaction: Transaction) => {
     const { addTransaction, history } = this.props;
     try {
       await addTransaction(transaction);
@@ -49,12 +52,12 @@ class List extends PureComponent<Props> {
 }
 
 const mapStateToProps = (state: StoreState) => ({
-  currentTransaction: transactionSelectors.getCurrentItem(state),
+  currentTransaction: transactionSelectors.getCurrentTransaction(state),
   error: transactionSelectors.getError(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<ThunkAction>) => ({
-  addTransaction: (transaction: Item) => dispatch(transactionOps.add(transaction)),
+  addTransaction: (transaction: Transaction) => dispatch(transactionOps.add(transaction)),
   getTransaction: (transactionId: string) => dispatch(transactionOps.get(transactionId)),
 });
 

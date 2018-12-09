@@ -1,18 +1,18 @@
 /* @flow */
 import * as types from './types';
 
-import type { ItemAction } from './actions';
-import type { Item } from './flow';
+import type { TransactionAction } from './actions';
+import type { Transaction } from './flow';
 
-export type ItemState = {
-  current: Item | null,
+export type TransactionState = {
+  current: Transaction | null,
   error: string | null,
-  list: Item[],
+  list: Transaction[],
   fetching: boolean,
   submitting: boolean,
 };
 
-export const initialState: ItemState = {
+export const initialState: TransactionState = {
   current: null,
   error: null,
   list: [],
@@ -20,7 +20,7 @@ export const initialState: ItemState = {
   submitting: false,
 };
 
-export default (state: ItemState = initialState, action: ItemAction) => {
+export default (state: TransactionState = initialState, action: TransactionAction) => {
   switch (action.type) {
     case types.ADD_ITEM_BEGIN:
       return { ...state, error: null, submitting: true };
@@ -46,14 +46,14 @@ export default (state: ItemState = initialState, action: ItemAction) => {
     case types.GET_ITEM_BEGIN:
       return { ...state, current: null, error: null, fetching: true };
     case types.GET_ITEM_SUCCESS:
-      return { ...state, current: action.item, fetching: false };
+      return { ...state, current: action.transaction, fetching: false };
     case types.GET_ITEM_FAILURE:
       return { ...state, error: action.error, fetching: false };
 
     case types.LIST_ITEMS_BEGIN:
       return { ...state, error: null, list: [], fetching: true };
     case types.LIST_ITEMS_SUCCESS:
-      return { ...state, list: action.items, fetching: false };
+      return { ...state, list: action.transactions, fetching: false };
     case types.LIST_ITEMS_FAILURE:
       return { ...state, error: action.error, fetching: false };
 
