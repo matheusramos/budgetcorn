@@ -41,46 +41,70 @@ const Form = (props: FormikBag<Props>) => {
   return (
     <Fragment>
       <FormikForm>
-        <label htmlFor='date' className='sr-only'>
-          Date
-          <input
-            type='date'
-            name='date'
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.date}
-          />
-        </label>
-        <TransactionFactor
-          // onBlur={handleBlur}
-          onChange={handleFactorChange}
-          factor={values.factor}
-        />
-        {/* <label htmlFor='amount' className='sr-only'> */}
-        <CurrencyInput
-          name='amount'
-          autoFocus
-          onBlur={handleBlur}
-          onChangeEvent={handleChange}
-          value={values.amount}
-        />
+        <div className='field'>
+          <label htmlFor='date' className='label'>
+            <span className='is-sr-only'>Date</span>
+            <div className='control'>
+              <input
+                className='input'
+                type='date'
+                name='date'
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.date}
+              />
+            </div>
+          </label>
+        </div>
+        <div className='field'>
+          <div className='control'>
+            <TransactionFactor onChange={handleFactorChange} factor={values.factor} />
+          </div>
+        </div>
+        <div className='field'>
+          <span className='is-sr-only'>Amount</span>
+          <div className='control'>
+            <CurrencyInput
+              name='amount'
+              className='input is-large has-text-right'
+              autoFocus
+              onBlur={handleBlur}
+              onChangeEvent={handleChange}
+              value={values.amount}
+            />
+          </div>
+        </div>
         {/* </label> */}
-        <label htmlFor='description' className='sr-only'>
-          Description
-          <input
-            type='text'
-            name='description'
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.description}
-          />
-        </label>
-        <CategoryPicker
-          onChange={handleCategoryChange}
-          categories={categories}
-          value={values.category}
-        />
-        <button type='submit' disabled={isSubmitting || !dirty || !!hasError}>
+        <div className='field'>
+          <label htmlFor='description' className='sr-only'>
+            <span className='is-sr-only'>Description</span>
+            <div className='control'>
+              <input
+                className='input'
+                type='text'
+                name='description'
+                placeholder='Enter a description'
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.description}
+              />
+            </div>
+          </label>
+        </div>
+        <div className='field'>
+          <div className='control'>
+            <CategoryPicker
+              onChange={handleCategoryChange}
+              categories={categories}
+              value={values.category}
+            />
+          </div>
+        </div>
+        <button
+          className='button is-primary is-fullwidth is-large'
+          type='submit'
+          disabled={isSubmitting || !dirty || !!hasError}
+        >
           Save
         </button>
       </FormikForm>
@@ -114,7 +138,6 @@ export default withFormik({
   }),
   handleSubmit: async (values, { props, setSubmitting }) => {
     try {
-      console.log(values);
       const { amount, category, date, description, factor } = values;
       const transaction = {
         amount: factor * amount,
