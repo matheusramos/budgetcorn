@@ -10,7 +10,7 @@ const validTransaction: Transaction = {
   description: 'Horn polish',
   date: new Date('2018-11-01 12:45:10'),
   category: 'beauty',
-  value: -145.1,
+  amount: -145.1,
 };
 
 describe('test default behaviour', () => {
