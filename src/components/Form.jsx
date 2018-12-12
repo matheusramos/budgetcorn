@@ -118,7 +118,7 @@ export default withFormik({
     if (!transaction) {
       return {
         amount: 0,
-        category: 'other',
+        category: 'Other',
         date: toDateInputString(),
         description: '',
         factor: -1,
