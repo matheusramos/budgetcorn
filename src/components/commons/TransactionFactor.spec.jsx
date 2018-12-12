@@ -4,7 +4,7 @@ import { create } from 'react-test-renderer';
 
 import TransactionFactor from './TransactionFactor';
 
-describe('Card component', () => {
+describe('Factor component', () => {
   it('should get -1 for debit', () => {
     expect.assertions(1);
     let factor = 1; // credit

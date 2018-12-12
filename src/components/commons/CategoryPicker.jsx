@@ -22,7 +22,7 @@ const CategoryButton = styled.button`
   display: flex;
   flex-direction: column;
   height: 4em;
-  width: 6.47em;
+  width: 5.47em;
   margin: 0.4em;
 
   .category-icon {

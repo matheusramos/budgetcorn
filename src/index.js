@@ -15,6 +15,7 @@ import {
   faMoneyBillAlt,
   faGraduationCap,
   faQuestion,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './index.sass';
@@ -34,6 +35,7 @@ fontawesomeLibrary.add(
   faMoneyBillAlt,
   faGraduationCap,
   faQuestion,
+  faTimes,
 );
 
 const rootElement = document.getElementById('root');
