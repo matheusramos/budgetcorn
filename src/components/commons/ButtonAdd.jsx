@@ -1,5 +1,37 @@
 /* @flow */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
+import type { ContextRouter } from 'react-router-dom';
 
-export default () => <Link to='/add'>+</Link>;
+import CircleButton from './CircleButton';
+
+type Props = {} & ContextRouter;
+
+const AddButtonDiv = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+`;
+
+const StyledButton = styled(CircleButton)`
+  height: 3em;
+  width: 3em;
+`;
+
+const ButtonAdd = (props: Props) => {
+  const { history } = props;
+  return (
+    <AddButtonDiv>
+      <StyledButton
+        type='button'
+        className='button is-primary is-shadowed'
+        onClick={() => history.push('/add')}
+      >
+        <Icon icon='plus' size='lg' />
+      </StyledButton>
+    </AddButtonDiv>
+  );
+};
+
+export default withRouter(ButtonAdd);
