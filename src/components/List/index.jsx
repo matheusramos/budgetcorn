@@ -2,6 +2,7 @@
 import React from 'react';
 
 import ButtonAdd from './ButtonAdd';
+import FinalBalance from './FinalBalance';
 import Grid from '../commons/Grid';
 import TransactionGroup from './TransactionGroup';
 import { calcBalanceByDay } from '../../utils/transaction';
@@ -18,10 +19,12 @@ export default (props: Props) => {
   const dates = Object.keys(groupedTransactions)
     .sort()
     .reverse();
+  const finalBalance = dates.length <= 0 ? 0 : groupedTransactions[dates[0]].balance;
 
   return (
     <Grid>
       <div className='box'>
+        <FinalBalance value={finalBalance} />
         {dates.map(date => (
           <TransactionGroup
             key={date}
