@@ -50,6 +50,10 @@ const Form = (props: FormikBag<Props>) => {
     props.setFieldValue('category', category);
   };
 
+  const handleAmountChange = (event, maskedValue, numberValue: number) => {
+    props.setFieldValue('amount', numberValue);
+  };
+
   return (
     <Grid>
       <div className='box'>
@@ -95,8 +99,8 @@ const Form = (props: FormikBag<Props>) => {
                   errors.amount && touched.amount && 'is-danger',
                 )}
                 autoFocus
-                onBlur={handleBlur}
-                onChangeEvent={handleChange}
+                prefix='$'
+                onChangeEvent={handleAmountChange}
                 value={values.amount}
               />
             </div>
