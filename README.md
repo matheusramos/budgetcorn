@@ -83,9 +83,13 @@ This app is bootstraped with [create-react-app](https://github.com/facebook/crea
 
 ### Redux and Ducks
 
-For state management, we use redux with the [re-ducks architecture](https://github.com/alexnm/re-ducks).
+For state management, we use redux with the [re-ducks architecture](https://github.com/alexnm/re-ducks). They can be found at `src/ducks`.
 
 Also, it tries to follow the [container/component](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) as much as possible.
+
+### IndexedDB
+
+We are using native [IndexedDB](https://developers.google.com/web/ilt/pwa/working-with-indexeddb) to store data. To migrate to something else we will need to refactor `src/api/transaction.js` file.
 
 ### Tests
 
@@ -93,3 +97,40 @@ The app is not thoroughly tested, but we use
 
 - jest: for general testing
 - react-test-renderer: for component testing
+
+It's okay to use **snapshot testing** for really simple dummy components.
+
+### Styling
+
+#### Bulma
+
+We user [Bulma](https://bulma.io) as a CSS framework. As it is modular by nature, only import
+what you'll use.
+
+#### Sass
+
+`node-sass` + CRA 2.0 make sass support very easy. Here we are using it for global styling and
+to import Bulma sass files.
+
+#### styled-components
+
+For component styling we use [styled-components](https://www.styled-components.com/).
+
+#### Colors
+
+We try as much as possible to use unicorn colors. Bulma palettes are pretty close to that.
+We just added a pink secondary color (#ff639b) to make it more complete.
+
+#### icons
+
+Awesome icons from [Font awesome](https://fontawesome.com/). Use it with `@fortawesome/react-fontawesome`.
+
+## TODO
+
+- Add button should get position fixed if list of transactions is greater than browser height
+- Edit and delete should not be a problem to implements since redux + api + formik are ready
+- Responsiveness could be reviewed. App is looking too mobile on desktop.
+- Add more unicorns
+- i18n
+- Currency are all in dollar, needs localization.
+- Default input date looks good on native mobile picker (not so much on desktop browsers)

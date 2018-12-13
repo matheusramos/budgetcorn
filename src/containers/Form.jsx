@@ -10,6 +10,7 @@ import {
   operations as transactionOps,
   selectors as transactionSelectors,
 } from '../ducks/transaction';
+import { categories } from '../settings';
 
 import type { Transaction } from '../ducks/transaction/flow';
 import type { StoreState } from '../ducks/store';
@@ -47,7 +48,13 @@ class List extends PureComponent<Props> {
 
   render() {
     const { currentTransaction } = this.props;
-    return <FormComponent onSubmit={this.handleSubmit} transaction={currentTransaction} />;
+    return (
+      <FormComponent
+        onSubmit={this.handleSubmit}
+        transaction={currentTransaction}
+        categories={categories}
+      />
+    );
   }
 }
 

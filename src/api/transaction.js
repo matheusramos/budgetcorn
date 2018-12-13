@@ -1,11 +1,9 @@
 /* @flow */
 import idb from 'idb';
+import { DATABASE_NAME, ITEM_OBJSTORE_NAME } from '../settings';
 import type { Transaction } from '../ducks/transaction/flow';
 
 // TODO: show error if indexedDB is not supported by browser
-
-const DATABASE_NAME: 'budgetcorn' = 'budgetcorn';
-const ITEM_OBJSTORE_NAME: 'transactions' = 'transactions';
 
 // open database
 const dbPromise = idb.open(DATABASE_NAME, 2, upgradeDB => {
