@@ -11,13 +11,13 @@ import styled from 'styled-components';
 import type { FormikBag } from 'formik';
 import type { ContextRouter } from 'react-router-dom';
 
-import Grid from './commons/Grid';
-import TransactionFactor from './commons/TransactionFactor';
-import CategoryPicker from './commons/CategoryPicker';
-import CircleButton from './commons/CircleButton';
-import { toDateInputString } from '../utils/date';
-import type { Transaction } from '../ducks/transaction/flow';
-import type { Category } from '../utils/flow';
+import Grid from '../commons/Grid';
+import CircleButton from '../commons/CircleButton';
+import TransactionFactor from './TransactionFactor';
+import CategoryPicker from './CategoryPicker';
+import { toDateInputString } from '../../utils/date';
+import type { Transaction } from '../../ducks/transaction/flow';
+import type { Category } from '../../utils/flow';
 
 type Props = {
   categories: Category[],
