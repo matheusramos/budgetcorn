@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import type { ContextRouter } from 'react-router-dom';
 
-import CircleButton from './CircleButton';
+import CircleButton from '../commons/CircleButton';
 
 type Props = {} & ContextRouter;
 
